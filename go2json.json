@@ -1,0 +1,354 @@
+[
+    {
+        "imports": "..."
+    },
+    {
+        "name": "Foo",
+        "struct": {
+            "fields": [
+                {
+                    "name": "alpha",
+                    "type": "int"
+                },
+                {
+                    "name": "beta",
+                    "type": "string"
+                },
+                {
+                    "name": "gamma",
+                    "type": "string"
+                },
+                {
+                    "name": "omega",
+                    "tag": "json:\"zed\"",
+                    "type": "bool"
+                }
+            ]
+        }
+    },
+    {
+        "interface": {
+            "methods": [
+                {
+                    "name": "rolg",
+                    "results": [
+                        {
+                            "type": "int"
+                        }
+                    ]
+                }
+            ]
+        },
+        "name": "Glor"
+    },
+    {
+        "interface": {
+            "composed": [
+                {
+                    "name": "Glor"
+                }
+            ],
+            "methods": [
+                {
+                    "name": "boof",
+                    "params": [
+                        {
+                            "type": "int"
+                        }
+                    ],
+                    "results": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "error"
+                        }
+                    ]
+                }
+            ]
+        },
+        "name": "Bar"
+    },
+    {
+        "key": "string",
+        "name": "Tree",
+        "type": "map",
+        "value": {
+            "interface": {}
+        }
+    },
+    {
+        "func": "merge",
+        "params": [
+            {
+                "name": "other",
+                "type": "Tree"
+            }
+        ],
+        "results": [
+            {
+                "type": "Tree"
+            }
+        ]
+    },
+    {
+        "func": "Tr",
+        "params": [
+            {
+                "name": "name",
+                "type": "string"
+            },
+            {
+                "name": "value",
+                "type": {
+                    "interface": {}
+                }
+            }
+        ],
+        "results": [
+            {
+                "type": "Tree"
+            }
+        ]
+    },
+    {
+        "func": "main"
+    },
+    {
+        "func": "dumpFile",
+        "params": [
+            {
+                "name": "filename",
+                "type": "string"
+            }
+        ]
+    },
+    {
+        "func": "handleGenDecl",
+        "params": [
+            {
+                "name": "fset",
+                "type": {
+                    "star": {
+                        "pre": "token",
+                        "sel": "FileSet"
+                    }
+                }
+            },
+            {
+                "name": "it",
+                "type": {
+                    "star": {
+                        "pre": "ast",
+                        "sel": "GenDecl"
+                    }
+                }
+            }
+        ],
+        "results": [
+            {
+                "type": "Tree"
+            }
+        ]
+    },
+    {
+        "func": "handleTypeSpec",
+        "params": [
+            {
+                "name": "fset",
+                "type": {
+                    "star": {
+                        "pre": "token",
+                        "sel": "FileSet"
+                    }
+                }
+            },
+            {
+                "name": "it",
+                "type": {
+                    "star": {
+                        "pre": "ast",
+                        "sel": "TypeSpec"
+                    }
+                }
+            }
+        ],
+        "results": [
+            {
+                "type": "Tree"
+            }
+        ]
+    },
+    {
+        "func": "handleType",
+        "params": [
+            {
+                "name": "fset",
+                "type": {
+                    "star": {
+                        "pre": "token",
+                        "sel": "FileSet"
+                    }
+                }
+            },
+            {
+                "name": "it",
+                "type": {
+                    "pre": "ast",
+                    "sel": "Expr"
+                }
+            }
+        ],
+        "results": [
+            {
+                "type": {
+                    "interface": {}
+                }
+            }
+        ]
+    },
+    {
+        "func": "handleMethods",
+        "params": [
+            {
+                "name": "fset",
+                "type": {
+                    "star": {
+                        "pre": "token",
+                        "sel": "FileSet"
+                    }
+                }
+            },
+            {
+                "name": "it",
+                "type": {
+                    "star": {
+                        "pre": "ast",
+                        "sel": "FieldList"
+                    }
+                }
+            }
+        ],
+        "results": [
+            {
+                "type": "Tree"
+            }
+        ]
+    },
+    {
+        "func": "handleStructType",
+        "params": [
+            {
+                "name": "fset",
+                "type": {
+                    "star": {
+                        "pre": "token",
+                        "sel": "FileSet"
+                    }
+                }
+            },
+            {
+                "name": "it",
+                "type": {
+                    "star": {
+                        "pre": "ast",
+                        "sel": "StructType"
+                    }
+                }
+            }
+        ],
+        "results": [
+            {
+                "type": "Tree"
+            }
+        ]
+    },
+    {
+        "func": "handleFuncType",
+        "params": [
+            {
+                "name": "fset",
+                "type": {
+                    "star": {
+                        "pre": "token",
+                        "sel": "FileSet"
+                    }
+                }
+            },
+            {
+                "name": "it",
+                "type": {
+                    "star": {
+                        "pre": "ast",
+                        "sel": "FuncType"
+                    }
+                }
+            }
+        ],
+        "results": [
+            {
+                "type": "Tree"
+            }
+        ]
+    },
+    {
+        "func": "handleFuncDecl",
+        "params": [
+            {
+                "name": "fset",
+                "type": {
+                    "star": {
+                        "pre": "token",
+                        "sel": "FileSet"
+                    }
+                }
+            },
+            {
+                "name": "it",
+                "type": {
+                    "star": {
+                        "pre": "ast",
+                        "sel": "FuncDecl"
+                    }
+                }
+            }
+        ],
+        "results": [
+            {
+                "type": "Tree"
+            }
+        ]
+    },
+    {
+        "func": "handleFieldList",
+        "params": [
+            {
+                "name": "fset",
+                "type": {
+                    "star": {
+                        "pre": "token",
+                        "sel": "FileSet"
+                    }
+                }
+            },
+            {
+                "name": "it",
+                "type": {
+                    "array": {
+                        "star": {
+                            "pre": "ast",
+                            "sel": "Field"
+                        }
+                    }
+                }
+            }
+        ],
+        "results": [
+            {
+                "type": {
+                    "array": "Tree"
+                }
+            }
+        ]
+    }
+]
