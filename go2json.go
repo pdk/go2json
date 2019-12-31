@@ -8,11 +8,12 @@ import (
 	"go/token"
 	"log"
 	"os"
+	"reflect"
 )
 
 // Foo is an example struct
 type Foo struct {
-	alpha       int
+	alpha       int `db:"a_l_p_h_a"`
 	beta, gamma string
 	omega       bool `json:"zed"`
 }
@@ -210,9 +211,9 @@ func handleStructType(fset *token.FileSet, it *ast.StructType) Tree {
 				"name": name.Name,
 				"type": handleType(fset, fld.Type),
 			}
-			if fld.Tag != nil {
-				t["tag"] = fld.Tag.Value[1 : len(fld.Tag.Value)-1]
-			}
+
+			t = t.merge(handleFieldTag(fset, fld.Tag))
+
 			fields = append(fields, t)
 		}
 	}
@@ -258,12 +259,42 @@ func handleFieldList(fset *token.FileSet, it []*ast.Field) []Tree {
 
 		t["type"] = handleType(fset, fld.Type)
 
-		if fld.Tag != nil {
-			t["tag"] = fld.Tag.Value[1 : len(fld.Tag.Value)-1]
-		}
+		t = t.merge(handleFieldTag(fset, fld.Tag))
 
 		fields = append(fields, t)
 	}
 
 	return fields
+}
+
+func handleFieldTag(fset *token.FileSet, it *ast.BasicLit) Tree {
+
+	r := Tree{}
+
+	if it == nil {
+		return r
+	}
+
+	tag := reflect.StructTag(it.Value[1 : len(it.Value)-1])
+
+	r["tag"] = tag
+
+	tagValues := Tree{}
+
+	for _, t := range []string{
+		// see https://github.com/golang/go/wiki/Well-known-struct-tags
+		"xml", "json", "asn1", "reform", "dynamodb", "bigquery", "datastore", "spanner", "bson",
+		"gorm", "yaml", "validate", "mapstructure", "protobuf", "db",
+	} {
+		v, ok := tag.Lookup(t)
+		if ok {
+			tagValues[t] = v
+		}
+	}
+
+	if len(tagValues) > 0 {
+		r["tagValues"] = tagValues
+	}
+
+	return r
 }

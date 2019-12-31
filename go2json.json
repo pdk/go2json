@@ -8,6 +8,10 @@
             "fields": [
                 {
                     "name": "alpha",
+                    "tag": "db:\"a_l_p_h_a\"",
+                    "tagValues": {
+                        "db": "a_l_p_h_a"
+                    },
                     "type": "int"
                 },
                 {
@@ -21,6 +25,9 @@
                 {
                     "name": "omega",
                     "tag": "json:\"zed\"",
+                    "tagValues": {
+                        "json": "zed"
+                    },
                     "type": "bool"
                 }
             ]
@@ -348,6 +355,34 @@
                 "type": {
                     "array": "Tree"
                 }
+            }
+        ]
+    },
+    {
+        "func": "handleFieldTag",
+        "params": [
+            {
+                "name": "fset",
+                "type": {
+                    "star": {
+                        "pre": "token",
+                        "sel": "FileSet"
+                    }
+                }
+            },
+            {
+                "name": "it",
+                "type": {
+                    "star": {
+                        "pre": "ast",
+                        "sel": "BasicLit"
+                    }
+                }
+            }
+        ],
+        "results": [
+            {
+                "type": "Tree"
             }
         ]
     }
